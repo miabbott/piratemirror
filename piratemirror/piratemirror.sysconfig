@@ -1,0 +1,2 @@
+STAGE_MNT="-v /path/to/stage/directory:/host/stage "
+PROD_MNT="-v /path/to/prod/directory:/host/prod "
