@@ -1,0 +1,8 @@
+[Unit]
+Description=FAW Pirate Mirror
+After=network.target
+
+[Service]
+EnvironmentFile=/etc/sysconfig/piratemirror
+Type=oneshot
+ExecStart=/usr/local/bin/mirror.sh

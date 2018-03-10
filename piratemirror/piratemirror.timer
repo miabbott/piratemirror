@@ -1,0 +1,9 @@
+[Unit]
+Description=FAW Pirate Mirror Timer
+
+[Timer]
+OnBootSec=1h
+OnUnitInactiveSec=1d
+
+[Install]
+WantedBy=timers.target
