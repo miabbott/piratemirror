@@ -1,7 +1,9 @@
+NAME := piratemirror
+
 .PHONY: install
 install:
-    sudo cp piratemirror.sysconfig /etc/sysconfig/piratemirror
-    sudo cp piratemirror.service /etc/systemd/system/piratemirror.service
-    sudo cp piratemirror.timer /etc/systemd/system/piratemirror.timer
-    sudo systemctl systemctl daemon-reload
-    sudo systemctl systemctl enable piratemirror.timer --now
+	cp $(NAME).sysconfig /etc/sysconfig/$(NAME)
+	cp $(NAME).service /etc/systemd/system/$(NAME).service
+	cp $(NAME).timer /etc/systemd/system/$(NAME).timer
+	systemctl daemon-reload
+	systemctl enable $(NAME).timer --now
