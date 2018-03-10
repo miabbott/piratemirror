@@ -1,8 +1,8 @@
 #!/bin/bash
 set -xeou pipefail
 
-prod=${PROD:-/host/repo}
-stage=${STAGE:-/host/staging}
+prod=${1:-/host/prod}
+stage=${2:-/host/stage}
 ref="fedora/27/x86_64/workstation"
 
 if [[ ! -d "$prod" ]] || [[ ! -d "$stage" ]]; then
