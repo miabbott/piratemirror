@@ -1,8 +1,16 @@
 [Unit]
 Description=FAW Pirate Mirror
-After=network.target
+Requires=docker.service
+After=network.service
 
 [Service]
 EnvironmentFile=/etc/sysconfig/piratemirror
 Type=oneshot
-ExecStart=/usr/local/bin/mirror.sh
+ExecStartPre=-/usr/bin/docker \
+              pull \
+              docker.io/miabbott/piratemirror
+ExecStart=/usr/bin/docker \
+          run \
+          $STAGE_MNT \
+          $PROD_MNT \
+          docker.io/miabbott/piratemirror
