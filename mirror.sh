@@ -20,7 +20,7 @@ fi
 # the local ref.
 ostree --repo=$stage remote add --if-not-exists --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-27-primary onerepo https://kojipkgs.fedoraproject.org/atomic/repo/
 ostree --repo=$stage pull --commit-metadata-only --depth=1 onerepo:$ref
-rhead=$(ostree --repo=$stage rev-parse onerepo:$ref)
+rhead=$(ostree --repo=$stage rev-parse $ref)
 lhead=$(ostree --repo=$prod rev-parse $ref)
 
 # If the two commit ids are different, we pull the content from the remote,
