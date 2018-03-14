@@ -3,7 +3,7 @@ Description=FAW Pirate Mirror Timer
 
 [Timer]
 OnBootSec=1h
-OnUnitInactiveSec=1d
+OnUnitInactiveSec=12h
 
 [Install]
 WantedBy=timers.target
