@@ -15,23 +15,13 @@ if [[ ! -d "$prod" ]] || [[ ! -d "$stage" ]]; then
     exit 1
 fi
 
-# Here we add the source of truth for FAW and pull the latest commit from the
-# newly added remote.  We store the commit id of HEAD for the remote ref and
-# the local ref.
-ostree --repo=$stage remote add --if-not-exists --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-27-primary onerepo https://kojipkgs.fedoraproject.org/atomic/repo/
-ostree --repo=$stage pull --commit-metadata-only --depth=1 onerepo:$ref
-rhead=$(ostree --repo=$stage rev-parse $ref)
-lhead=$(ostree --repo=$prod rev-parse $ref)
-
-# If the two commit ids are different, we pull the content from the remote,
-# prune the old data, generate a summary, then rsync from the 'stage' directory
-# to the 'prod' directory.
+# Add the source of truth, mirror the latest commit, prune anything older
+# than 7 days, generate the summary and then rsync to prod.
 #
-# NOTE: because this script is typically invoked from a container, we are assuming
-#       that the container has placed 'rsync-repos' in '/root'.  YMMV.
-if [[ "$rhead" != "$lhead" ]]; then
-    ostree --repo=$stage pull --mirror --depth=1 onerepo:$ref
-    ostree --repo=$stage prune --keep-younger-than="7 days ago" $ref
-    ostree --repo=$stage summary -u
-    /root/rsync-repos --src $stage --dest $prod
-fi
+# NOTE: because this is typically run from a container, we assume the 
+# location of the 'rsync-repos' script
+ostree --repo=$stage remote add --if-not-exists --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-27-primary onerepo https://kojipkgs.fedoraproject.org/atomic/repo/
+ostree --repo=$stage pull --mirror --depth=1 onerepo:$ref
+ostree --repo=$stage prune --keep-younger-than="7 days ago" $ref
+ostree --repo=$stage summary -u
+/root/rsync-repos --src $stage --dest $prod
