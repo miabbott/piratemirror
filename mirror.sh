@@ -6,8 +6,8 @@ set -xeou pipefail
 # you have your directories at '/host/{prod,stage}'.  This is because the
 # script is normally executed in a container with directories bind mounted
 # into the container.
-prod=${1:-/host/prod}
-stage=${2:-/host/stage}
+prod=${1:-/host/prod/}
+stage=${2:-/host/stage/}
 ref="fedora/27/x86_64/workstation"
 
 if [[ ! -d "$prod" ]] || [[ ! -d "$stage" ]]; then
@@ -18,7 +18,7 @@ fi
 # Add the source of truth, mirror the latest commit, prune anything older
 # than 7 days, generate the summary and then rsync to prod.
 #
-# NOTE: because this is typically run from a container, we assume the 
+# NOTE: because this is typically run from a container, we assume the
 # location of the 'rsync-repos' script
 ostree --repo=$stage remote add --if-not-exists --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-27-primary onerepo https://kojipkgs.fedoraproject.org/atomic/repo/
 ostree --repo=$stage pull --mirror --depth=1 onerepo:$ref
