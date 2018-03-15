@@ -8,7 +8,7 @@ This mirror is located in a datacenter in Amsterdam, Netherlands.
 
 It aims to have the last 7 days worth of ostree commits available.
 
-*!!! WARNING !!!   !!! WARNING !!!   !!! WARNING !!!    !!! WARNING  !!!*
+**!!! WARNING !!!   !!! WARNING !!!   !!! WARNING !!!    !!! WARNING  !!!**
 
 Please do not rely on this mirror for any kind of production infrastructure!
 
@@ -17,7 +17,7 @@ the monetary cost or maintenance cost becomes too great.
 
 You have been warned!
 
-*!!! WARNING !!!   !!! WARNING !!!   !!! WARNING !!!    !!! WARNING  !!!*
+**!!! WARNING !!!   !!! WARNING !!!   !!! WARNING !!!    !!! WARNING  !!!**
 
 In order to use this repo:
 
