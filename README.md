@@ -39,3 +39,5 @@ Fedora 28 Atomic Workstation
 ---
 Say hello:  miabbott #atomic Freenode | https://twitter.com/rageear
 
+Read about how I built the mirror:  https://miabbott.github.io/2018/03/16/setting-up-faw-pirate-mirror.html
+
