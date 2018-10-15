@@ -18,7 +18,7 @@ stage=${2:-/host/stage/}
 rsync_repos=${3:-/root/rsync-repos}
 
 # We are now tracking Fedora 27 and 28 Atomic Workstation
-releases=("27" "28")
+releases=("27" "28" "29")
 
 if [[ ! -d "$prod" ]] || [[ ! -d "$stage" ]]; then
     echo "Must have 'prod' and 'stage' directories present"
@@ -37,9 +37,14 @@ fi
 # summary and rsync to prod.
 
 for rel in "${releases[@]}"; do
+  if (( "$rel" > 28 )); then
+      ref=fedora/$rel/x86_64/silverblue
+    else
+      ref=fedora/$rel/x86_64/workstation
+    fi
     gpgkeyname=RPM-GPG-KEY-fedora-$rel-primary
     remote=fedora-$rel-aw
-    ref=fedora/$rel/x86_64/workstation
+    ostree --repo=$stage init --mode archive
     ostree --repo=$stage remote add --if-not-exists --set gpgkeypath=/etc/pki/rpm-gpg/$gpgkeyname $remote https://kojipkgs.fedoraproject.org/atomic/repo/
     ostree --repo=$stage pull --mirror --depth=1 $remote:$ref
     ostree --repo=$stage prune --keep-younger-than="7 days ago" $ref
