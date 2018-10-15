@@ -35,7 +35,10 @@ fi
 # So for each major release, we add the source of truth, mirror the latest
 # commit, and prune anything older than 7 days.  Then we can generate the
 # summary and rsync to prod.
-
+#
+# For Fedora 29 Silverblue, the ref got renamed, so we have to check which
+# release version we are on and adjust.
+#
 for rel in "${releases[@]}"; do
   if (( "$rel" > 28 )); then
       ref=fedora/$rel/x86_64/silverblue
