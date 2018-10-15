@@ -1,6 +1,6 @@
 https://faw.piratemirror.party/README.txt
 
-This is a 'pirate' mirror of the Fedora 27/28 Atomic Workstation ostree
+This is a 'pirate' mirror of the Fedora 27/28/29 Atomic Workstation ostree
 content.  It is not officially supported by Fedora, Project Atomic, or
 any other organization in any way.
 
@@ -34,6 +34,13 @@ Fedora 28 Atomic Workstation
 ```
 # ostree remote add --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-28-primary pirate-28 https://faw.piratemirror.party
 # rpm-ostree rebase pirate-28:fedora/28/x86_64/workstation
+```
+
+Fedora 29 Silverblue
+
+```
+# ostree remote add --set gpgkeypath=/etc/pki/rpm-gpg/RPM-GPG-KEY-fedora-29-primary pirate-29 https://faw.piratemirror.party
+# rpm-ostree rebase pirate-29:fedora/29/x86_64/silverblue
 ```
 
 ---
