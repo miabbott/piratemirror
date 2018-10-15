@@ -1,16 +1,15 @@
 [Unit]
-Description=FAW Pirate Mirror
-Requires=docker.service
+Description=Silverblue Pirate Mirror
 After=network.service
 
 [Service]
 EnvironmentFile=/etc/sysconfig/piratemirror
-Type=oneshot
-ExecStartPre=-/usr/bin/docker \
+Type=simple
+ExecStartPre=-/usr/bin/podman \
               pull \
               docker.io/miabbott/piratemirror
-ExecStart=/usr/bin/docker \
-          run \
+ExecStart=/usr/bin/podman \
+          run --rm \
           $STAGE_MNT \
           $PROD_MNT \
           docker.io/miabbott/piratemirror
