@@ -1,5 +1,5 @@
 [Unit]
-Description=FAW Pirate Mirror Timer
+Description=Silverblue Pirate Mirror Timer
 
 [Timer]
 OnBootSec=1h
