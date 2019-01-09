@@ -1,4 +1,4 @@
-FROM registry.fedoraproject.org/fedora:27
+FROM registry.fedoraproject.org/fedora:29
 LABEL maintainer="Micah Abbott <miabbott@redhat.com>"
 RUN dnf -y install ostree python2 rsync && \
     dnf clean all && \
